@@ -1,6 +1,6 @@
 FIRST_BET = 50
 MAX_BET = 3000
-TIGHT_BUDGET = FALSE
+TIGHT_BUDGET = false
 
 # 勝敗表(小に賭けた場合)
 # 3 : lose
@@ -14,7 +14,7 @@ def win?
   false
 end
 
-def next_bet(bet, money, result)
+def next_bet_martingale(bet, money, result)
   next_bet_val = bet * 2
   next_bet_val =  MAX_BET if next_bet_val > MAX_BET
   return money + result if money + result < next_bet_val
@@ -22,6 +22,12 @@ def next_bet(bet, money, result)
 end
 
 
+def next_bet_dalembert(bet, money, result)
+  next_bet_val = bet + 1
+  next_bet_val =  MAX_BET if next_bet_val > MAX_BET
+  return money + result if money + result < next_bet_val
+  next_bet_val
+end
 
 try_count = ARGV[0].to_i
 money = ARGV[1].nil? ? 5000 : ARGV[1].to_i
@@ -56,7 +62,8 @@ try_count.times do
     result = 0
     next
   end
-  bet = bet == MAX_BET ? FIRST_BET : next_bet(bet, money, result)
+  bet = bet == MAX_BET ? FIRST_BET : next_bet_martingale(bet, money, result)
+  #bet = bet == MAX_BET ? FIRST_BET : next_bet_dalembert(bet, money, result)
 end
 
 result = result - bunkrupted_count * money
