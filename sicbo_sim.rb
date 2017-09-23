@@ -18,6 +18,9 @@ def next_bet_martingale(bet, money, result)
   next_bet_val = bet * 2
 end
 
+def next_bet_grand_martingale(bet, money, result)
+  next_bet_val = bet * 2 + FIRST_BET
+end
 
 def next_bet_dalembert(bet, money, result)
   next_bet_val = bet + 1
@@ -27,9 +30,11 @@ def calc_next_bet(bet, money, result, betting_system)
   return FIRST_BET if bet == MAX_BET
 
   next_bet_val = case betting_system
-  when "martingale" then
+  when "martingale", "m" then
     next_bet_martingale(bet, money, result)
-  when "dalembert" then
+  when "grand_martingale", "g" then
+    next_bet_grand_martingale(bet, money, result)
+  when "dalembert", "d" then
     next_bet_dalembert(bet, money, result)
   else
     next_bet_martingale(bet, money, result)
@@ -59,7 +64,7 @@ try_count.times do
     next
   end
 
-#  puts "lose : #{-bet}"
+  puts "lose : #{-bet}"
   result -= bet
   puts "result : #{result}"
 
