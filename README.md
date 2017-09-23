@@ -4,17 +4,18 @@ This is a casino simulator.
 You can use various betting systems to simulate some alternative games.
 The betting systems that can be selected are as follows.
 - martingale
+- limited martingale
 - grand martingale
-- parlay
 - D'alembert
-- pyramid
+- pyramid (not implemented yet)
+- parlay (do not implemente)
 
 
 ## How to use?
 You can simulate SicBo by doing the following
 
 ```bash
-$ ruby ./sicbo_sim.rb <try_count> <budget> <betting_system("martingale"|"dalembert")>
+$ ruby ./sicbo_sim.rb <try_count> <budget> <betting_system("m"|"l"|"g"|"d")>
 ```
 
 ## Extra

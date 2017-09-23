@@ -21,7 +21,7 @@ end
 def next_bet_limited_martingale(bet, money, result)
   if bet >= FIRST_BET * 2 ** 4
     puts "!!!!!!!!!limited!!!!!!!!!!"
-    return FIRST_BET if  bet >= FIRST_BET * 2 ** 3
+    return FIRST_BET if  bet >= FIRST_BET * 2 ** 4
   end
   next_bet_martingale(bet, money, result)
 end
