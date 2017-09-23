@@ -14,7 +14,7 @@ The betting systems that can be selected are as follows.
 You can simulate SicBo by doing the following
 
 ```bash
-$ ruby ./sicbo_sim.rb <try_count> <budget> 
+$ ruby ./sicbo_sim.rb <try_count> <budget> <betting_system("martingale"|"dalembert")>
 ```
 
 ## Extra
