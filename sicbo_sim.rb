@@ -18,6 +18,14 @@ def next_bet_martingale(bet, money, result)
   next_bet_val = bet * 2
 end
 
+def next_bet_limited_martingale(bet, money, result)
+  if bet >= FIRST_BET * 2 ** 4
+    puts "!!!!!!!!!limited!!!!!!!!!!"
+    return FIRST_BET if  bet >= FIRST_BET * 2 ** 3
+  end
+  next_bet_martingale(bet, money, result)
+end
+
 def next_bet_grand_martingale(bet, money, result)
   next_bet_val = bet * 2 + FIRST_BET
 end
@@ -32,6 +40,8 @@ def calc_next_bet(bet, money, result, betting_system)
   next_bet_val = case betting_system
   when "martingale", "m" then
     next_bet_martingale(bet, money, result)
+  when "limited_martingale", "l" then
+    next_bet_limited_martingale(bet, money, result)
   when "grand_martingale", "g" then
     next_bet_grand_martingale(bet, money, result)
   when "dalembert", "d" then
